@@ -5,13 +5,8 @@ import classes from "./PostList.module.css";
 import Modal from "./Modal";
 
 const PostList = (props) => {
-  const [modalIsVisible, setModalIsVisible] = useState(true);
   const [enteredBody, setEnteredBody] = useState("");
   const [enteredAuthor, setEnteredAuthor] = useState("");
-
-  const hideModalHandler = () => {
-    setModalIsVisible(false);
-  };
 
   const bodyChangeHandler = (event) => {
     setEnteredBody(event.target.value);
@@ -23,8 +18,8 @@ const PostList = (props) => {
 
   return (
     <>
-      {modalIsVisible && (
-        <Modal onClose={hideModalHandler}>
+      {props.modalIsVisible && (
+        <Modal onClose={props.onStopPosting}>
           <NewPost
             onBodyChange={bodyChangeHandler}
             onAuthorChange={authorChangeHandler}
