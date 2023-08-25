@@ -20,9 +20,21 @@ const PostList = (props) => {
           <NewPost onAddPost={addPostHandler} onCancel={props.onStopPosting} />
         </Modal>
       )}
-      <ul className={classes.posts}>
-        <Post author="Manuel" body="Check out the full course!" />
-      </ul>
+      {posts.length > 0 && (
+        <ul className={classes.posts}>
+          {posts.map((post) => {
+            return (
+              <Post key={post.body} author={post.author} body={post.body} />
+            );
+          })}
+        </ul>
+      )}
+      {posts.length === 0 && (
+        <div style={{ textAlign: "center", color: "white" }}>
+          <h2>There are no posts yet.</h2>
+          <p>Start adding some!</p>
+        </div>
+      )}
     </>
   );
 };
