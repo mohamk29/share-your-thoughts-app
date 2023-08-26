@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import NewPost from "./NewPost";
 import Post from "./Post";
 import classes from "./PostList.module.css";
@@ -9,6 +9,13 @@ const PostList = (props) => {
 
   const addPostHandler = (postData) => {
     setPosts((prevPosts) => {
+      fetch("http://localhost:8080/posts", {
+        method: "POST",
+        body: JSON.stringify(postData),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
       return [postData, ...prevPosts];
     });
   };
